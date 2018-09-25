@@ -83,3 +83,116 @@ Why there is a semicolon(;) at the end of a function expression?
     i.e : var fn = function() {};
     Its not treated as a code block.
 
+Differences between function expression and function declaration.
+    The main difference between function expression and function definition are :
+    1. Function expression are not hoisted. You can't use function expressions before you define them
+    2. A function expression can be used as a IIFE (Immediately Invoked Function Expression) 
+        which runs as soon as it is defined.
+    3. Function Expression are basically used in OOJS.
+
+What are Named Function Expression ?
+    A function expression that has a name are called named function expression.
+    eg: 1
+        var sayHi = function func(who) {
+            if(who)
+                console.log('Hi ', who);
+            else
+                func('Guest');
+        }
+    There are 2 benefits of using a nfe.
+        i.  It allows the function to reference itself internally.
+        ii. It is not visible outside of the function.
+
+        In the above example calling func from outside will throw an error. 
+
+Important examples:
+    1. Below example demonstrates that object can be passed as a parameter.
+
+    function Employee(name, salary, supervisor) {
+        this.name = name;
+        this.salary = salary;
+        this.supervisor = supervisor;
+    }
+    var boss=new Employee('Raj-boss', 200);
+    var manager=new Employee('Rohit-mngr', 150, boss); // assigned boss as the supervisor
+    var teamLeader=new Employee('Sinha-tmldr', 100, manager); // assigned manager as the supervisor
+
+    console.log(manager.supervisor.name, ' is the supervisor of ', manager.name);
+    // Raj-boss  is the supervisor of  Rohit-mngr
+
+    2. Below example helps in creating a common object and allocates single space for 
+    getSalary and addSalary functions.
+    If we include these functons inside the Employee function then the objecs will have individual copy
+    of the same function when invoked separately. To avoid those extra spaces, we use prototype.
+
+    function Employee(name, salary) {
+        this.name = name;
+        this.salary = salary;
+    }
+    Employee.prototype.addSalary = function addSalaryFunction (addition){
+        this.salary = this.salary + addition;
+    }
+    Employee.prototype.getSalary = function getSalaryFunction () {
+        return this.salary;
+    }
+    var boss1=new Employee('Raj-boss', 200000);
+    var boss2=new Employee('Rohit-boss', 200000);
+
+Constructor function
+    Constructor functions technically are regular functions. There are two conventions though:
+    1.  They are named with capital letter first.
+    2.  They should be executed only with "new" operator.
+
+    The main purpose of constructors – to implement reusable object creation code.
+
+    function User(name) {
+        this.name = name;
+        this.age = 20;
+    }
+    var u1 = new User('Rohit');
+    var u2 = new User('Raj');
+
+    console.log('u1 ==> ', u1); // u1 ==>  User { name: 'Rohit', age: 20 }
+    console.log('u2 ==> ', u2); // u2 ==>  User { name: 'Raj', age: 20 }
+
+    When a function is executed as new User(...), it does the following steps:
+
+    1.  A new empty object is created and assigned to this.
+    2.  The function body executes. Usually it modifies this, adds new properties to it.
+    3.  The value of this is returned.
+
+    function User(name) {
+        // this = {};  (implicitly), hidden line
+
+        // add properties to this
+        this.name = name;
+        this.age = 20;
+
+        // return this;  (implicitly) hidden line
+    }
+
+    Making the Constructor fail safe, even if it is not called by a new operator.
+    It is done by adding the target operator to check if it was called with new operator or not.
+    function User(name) {
+        if(!new.target){
+            return new User(name);
+        }
+        this.name = name;
+        this.age = 20;
+        // return this;
+    }
+    var u1 = new User('Rohit');
+    var u2 = User('Raj');
+
+    console.log('u1 ==> ', u1); // u1 ==>  User { name: 'Rohit', age: 20 }
+    console.log('u2 ==> ', u2); // u2 ==>  User { name: 'Raj', age: 20 }
+
+Difference of using new function.
+    When a function is created using new keyword i.e new function, its [[Environment]] reference 
+    not the current Lexical Environment, but instead the global one.
+    eg :    function getFunc() {
+                let value = 'test';
+                let func = new function(console.log(value));
+                return func;
+            }
+            getFunc()();

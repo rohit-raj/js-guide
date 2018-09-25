@@ -30,3 +30,71 @@ What are data types in javascript ?
     Non Primitive :
         i.   Objects
 
+What are primitives or primitive values?
+    Primitives are simply the data types that are not objects, and has no methods and no properties.
+    These are immutable, meaning that the value will not change on its own though the variable 
+    storing these primitives can change the values by reassigning.
+    eg: var a = 1;
+    `1` cannot change on it own. but `a` can store another value.
+    There are basically 6 primitives :
+        i.   Undefined
+        ii.  Null
+        iii. String
+        iv.  Numbers
+        v.   Boolean
+        vi.  Symbol (introduced in ES 6)
+
+If primitives do not have properties the how does it works when we put a method against them ?
+OR
+Primitive wrapper objects in JavaScript
+eg : var a = 'abc';
+console.log(a.length); // 3
+    When a method is called by a primitive, then a special object wrapper is created that provies the
+    extra functionality, and then it is destroyed.
+    The object wrapper are different for different primitive type and are called: 
+    String, Number, Boolean and Symbol.
+
+    The Wrapper's valusOf() method returns the primitive value;
+
+    eg: let str = "Hello";
+        console.log( str.toUpperCase() ); // HELLO
+        console.log( str.valusOf() ); // hello
+        1. The string str is primitive. So in the moment of accessing the property, a special object
+            is created that knows the value of the sting, which has the method toUpperCase.
+        2. The method runs and returns a new string (shown by console.log).
+        3. The special object is destroyed, leaving the primitive str alone.
+
+What are symbol ?
+    A symbol is a unique and immutable data type and may be used as an identifier for object properties. 
+    The symbol object is an implicit object wrapper for the symbol primitive data type.
+    The symbol type is used to create unique identifiers for objects.
+    const mySymbol = Symbol('mySymbol');
+    console.log(typeof mySymbol);       // symbol
+
+What is Undefined ?
+    Undefined is a variable type, that has only one value also called undefined.
+    It usually indicates the absence of a value or an error condition.
+    Undefined can result from language-level behaviour.
+    When converted to Boolean, result is false.
+    eg 1: Undefined as a variable type
+        var a;
+        console.log(a);             // undefined
+        console.log(typeof a);      // undefined
+    
+    eg 2: Undefined as an unset object
+        var obj = {};
+        console.log(obj);             // undefined
+        console.log(typeof obj);      // undefined
+    
+    eg 3: Undefined as an unset function
+        var fn = function(myArg){
+            console.log(myArg);             // undefined
+            console.log(typeof myArg);      // undefined
+        };
+        fn();
+    
+    eg 4: Undefined as a literal value
+        var a = undefined;
+        console.log(a);             // undefined
+        console.log(typeof a);      // undefined
+

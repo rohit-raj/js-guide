@@ -68,3 +68,46 @@ What are different structures of an object ?
                 user.sayHi = sayIt;
                 user.sayHi(); //Hello
 
+Object method invocation and this.
+    let user = {
+        name: "John",
+        hi() { alert(this.name); }
+    }
+
+    // split getting and calling the method in two lines
+    let hi = user.hi;
+    hi(); // Error, because this is undefined
+
+    Here hi = user.hi puts the function into the variable, 
+    and then on the last line it is completely standalone, and so there’s no this
+
+    To make user.hi() calls work, JavaScript uses a trick – the dot '.' returns not a function, 
+    but a value of the special Reference Type.
+
+    The Reference Type is a “specification type”. We can’t explicitly use it, 
+    but it is used internally by the language.
+
+    The value of Reference Type is a three-value combination (base, name, strict), where:
+    base is the object.
+    name is the property.
+    strict is true if use strict is in effect.
+
+    The result of a property access user.hi is not a function, but a value of Reference Type. 
+    For user.hi in strict mode it is:
+    (user, "hi", true)
+
+    When parentheses () are called on the Reference Type, they receive the full information about the 
+    object and its method, and can set the right this (=user in this case).
+
+    Any other operation like assignment hi = user.hi discards the reference type as a whole, 
+    takes the value of user.hi (a function) and passes it on. So any further operation “loses” this.
+
+Properties of object.
+    1.  Arrow functions have no “this”.
+    2.  The value of this is defined at run-time.
+    3.  Methods can reference the object as this.
+    4.  When a function is declared, it may use this, but that this has no value until 
+        the function is called.
+    5.  That function can be copied between objects.
+    6.  When a function is called in the “method” syntax: object.method(), 
+        the value of this during the call is object.

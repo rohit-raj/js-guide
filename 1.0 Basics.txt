@@ -1,0 +1,32 @@
+What is javascript ?
+    1.  Javascript is a high level interpreted programming language.
+    2.  It is characterized as :
+            - Dynamic
+            - Weakly typed
+            - Prototype based
+            - Multi paradigm
+        
+    3.  As Multi-paradigm, it supports :
+            a. Event driven programming style.
+            b. Functional programming style.
+            c. Imperative programming style. This includes :
+                i.  Object Oriented
+                ii. Prototype based.
+    4.  Javascript has no compliation step
+        The interpreter, interprets each line and runs it.
+        Modern broser use Just-In-Time(JIT) compiler.
+        Which complies JS to executable bytecode just it is about to run.
+
+What are data types in javascript ?
+    Data types are the basic block of javascript where variables can be manipulated.
+    There are seven data types.
+    Primitives :
+        i.   Undefined
+        ii.  Null
+        iii. String
+        iv.  Numbers
+        v.   Boolean
+        vi.  Symbol (introduced in ES 6)
+    Non Primitive :
+        i.   Objects
+

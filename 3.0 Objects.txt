@@ -1,0 +1,70 @@
+What is Object ?
+    1.  Object are the data type in Javascript. Which can store anything in key-valu pairs.
+    2.  It is characterized as key value pair.
+    3.  Key must be a String or symbol. Value can be anything.
+    4.  Object literal is a comma separated list of name value pairs, wrapped in curly braces.
+    5.  Objects are assciative arrays with several special features.
+    6.  Objects are assigned and copied by reference.
+    7.  Objects can have methods.
+    8.  To make a real copy of an object we need to clone it. Object.assign({}, ObjectToBeCopied);
+    9.  A function that is the property of an object is called method.
+    10. To access the variable of an object from inside the method we need to use 'this' or
+        the object name.
+    11. Object consists of data fields, which maybe private to outside world. These data fields are
+        known as instane variables or properties.
+
+What are different structures of an object ?
+    Object is defined in a single way, but can have different structure internally.
+        i.      let user = {
+                    name : 'Rohit
+                };
+
+        ii.     let user = {
+                    name : 'Rohit',
+                    sayHi: function(){
+                        console.log('Hello');
+                    }
+                };
+
+        iii.    let user = {
+                    name : 'Rohit',
+                    sayHi(){
+                        console.log('Hello');
+                    }
+                };
+
+        iv.     let user = {
+                    name : 'Rohit',
+                    sayHi: function sayHi(){
+                        console.log('Hello');
+                    }
+                };
+                user.sayHi(); //Hello
+
+        v.     let user = {
+                    name : 'Rohit'
+                };
+                function sayHi(){
+                    console.log('Hello');
+                }
+                user.sayHi = sayHi;
+                user.sayHi(); //Hello
+
+        vi.     let user = {
+                    name : 'Rohit'
+                };
+                var sayIt = function sayHi(){
+                    console.log('Hello');
+                };
+                user.sayHi = sayIt;
+                user.sayHi(); //Hello
+
+        vii.    let user = {
+                    name : 'Rohit'
+                };
+                var sayIt = function(){
+                    console.log('Hello');
+                };
+                user.sayHi = sayIt;
+                user.sayHi(); //Hello
+

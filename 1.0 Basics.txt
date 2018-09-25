@@ -133,3 +133,22 @@ What are undeclared and undefined variables?
     Undefined variables are those that are declared in the program but have not been given any value. 
     If the program tries to read the value of an undefined variable, an undefined value is returned. 
  
+How does string.toUpperCase() works ?
+    When the toUpperCase function is invoked, then the method creates a new variable, since strings are
+    primitive, and are immutable.
+    This new variable is returned, which inturn leaves the invokee string immutated.
+
+How primitives are immutable ?
+    Lets take an example :
+    eg: 
+    var a = 2;
+    function changeValue(b) {
+        a = b + 5;
+    }
+    changeValue(a);
+    console.log(a); // 2
+    This happens because, when the function changeValue is called with variable a, 
+    then,
+    the function has the variable in its local scope, or say it the argument a, which changed in 
+    the local scope, leaving the actual variable a untouched.
+    

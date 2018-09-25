@@ -98,3 +98,38 @@ What is Undefined ?
         console.log(a);             // undefined
         console.log(typeof a);      // undefined
 
+What is null ?
+    Null is a value of type object.
+    It is not a “reference to a non-existing object” or a “null pointer” like in some other languages.
+    It’s just a special value which has the sense of “nothing”, “empty” or “value unknown”.
+    Null only results from application-level behaviour.
+    Null is a better choice over undefined to choose over indicator value.
+    When converted to Boolean, result is false.
+    eg 1 :
+        var a = null;
+        console.log(a);             // null
+        console.log(typeof a);      // object
+
+What is the preferred way to check if variable is undefined ?
+    typeof is the preferred way to check if variable is undefined.
+
+On which primitive methods cannot be invoked ?
+    Null and Undefined.
+
+Can we skip using var keyword when declating a variable ?
+    Yes, we can skip using var, but keeping in mind that the variable is initialised(assigned a value)
+    after skipping var. Also, it is mandatory to remove 'use-strict'.
+
+What will happen if we redeclare the value ?
+    var test = 'Rohit';
+    var test;
+    console.log(test); // test
+    This happens because test does not lose its value untill it has been reinitialised after redeclare.
+
+What are undeclared and undefined variables?
+    Undeclared variables are those that do not exist in a program and are not declared. 
+    If the program tries to read the value of an undeclared variable, then a runtime error is encountered.
+
+    Undefined variables are those that are declared in the program but have not been given any value. 
+    If the program tries to read the value of an undefined variable, an undefined value is returned. 
+ 

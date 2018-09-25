@@ -1,0 +1,85 @@
+What are functions?
+    Functions are the building blocks of a program.
+    To create a function we can use a function declaration or function expression.
+    They are first class citizens, that means that they can be passed as parameters, 
+    returned, assigned to variables etc
+    eg: function showMessage() {
+            console.log( 'Hello everyone!' );
+        }
+    A variable declared inside a function is only visible inside that function.
+    The function has full access to the outer variable. It can modify the outer variable as well.
+    The outer variable is only used if there’s no local variable defined.
+    If the function does not return anything then it returns undefined.
+    Function is also an object.
+
+Global variables.
+    Variables declared outside any function are known as Global variable.
+    Global variables are visible from any function.
+
+Various types of functions arguments.
+    eg: 1 No argument
+        function print() {
+            console.log("hello");
+        }
+    print(); // hello
+
+    eg: 2 with argument
+        function print(arg1, arg2) {
+            console.log(arg1 + ' : ' + arg2);
+        }
+    print('Hello', 'Rohit'); // Hello : Rohit
+
+    eg: 3 default argument
+        function print(arg1, arg2 = "no text given") {
+            console.log(arg1 + ' : ' + arg2);
+        }
+    print('Hello'); // Hello : no text given
+
+    eg: 4 returning value
+        function sum(a, b) {
+            return a + b;
+        }
+        var result = sum(1, 2);
+        console.log('sum ==> ', result);
+
+Various types of function definition.
+    eg:1 : This is called function declaration
+    function abc(n){
+        return n;
+    }
+    console.log(abc); //[Function: abc]
+
+    eg:2 : This is called function expression
+    var abcd = function(n){
+        return n;
+    };
+    console.log(abcd); // [Function: abcd]
+
+    eg:3 : By new operator
+    var add = new Function("a", "b", "return a+b;");
+    console.log(add(3,4)); // 7
+
+Copying a function to another variable.
+    eg:1
+    function abc(n){
+        return n;
+    }
+    console.log(abc); //[Function: abc]
+    var fn1 = abc;
+    console.log(fn1); //[Function: abc]
+    console.log(fn1(5)); //5
+
+    eg:2
+    var abcd = function(n){
+        return n;
+    }
+    console.log(abcd); // [Function: abcd]
+    var fn2 = abcd;
+    console.log(fn2); //[Function: abcd]
+    console.log(fn2(6)); //6
+
+Why there is a semicolon(;) at the end of a function expression?
+    The function expression is used inside a statement as a value:
+    i.e : var fn = function() {};
+    Its not treated as a code block.
+

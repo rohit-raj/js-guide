@@ -28,12 +28,69 @@
         return true;
     }
 
+    function createArray(length) {
+        var arr = new Array(length || 0),
+            i = length;
+    
+        if (arguments.length > 1) {
+            var args = Array.prototype.slice.call(arguments, 1);
+            while(i--) arr[length-1 - i] = createArray.apply(this, args);
+        }
+    
+        return arr;
+    }
+
+    function isInterleavedByDP(a, b, c){
+        var M = a.length;
+        var N = b.length;
+
+        var IL = createArray(M+1,N+1);
+
+        for (var i=0; i <M+1; i++)
+            for(var j=0; j<N+1; j++)
+                IL[i][j] = false;
+
+        if((M+N) != c.length)
+            return false;
+        
+        for(i=0; i<=M; ++i){
+            for(j=0; j<=N; ++j){
+                if (i==0 && j==0)
+                    IL[i][j] = true;
+                else if (i==0 && b[j-1]==c[j-1]){
+                    IL[i][j] = IL[i][j-1];
+                }
+                else if (j==0 && a[i-1]==c[i-1]){
+                    IL[i][j] = IL[i-1][j];
+                }
+                else if(a[i-1]==c[i+j-1] && b[j-1]!=c[i+j-1]){
+                    IL[i][j] = IL[i-1][j];
+                }
+                else if (a[i-1]!=c[i+j-1] && b[j-1]==c[i+j-1]){
+                    IL[i][j] = IL[i][j-1];
+                }
+                else if (a[i-1]==c[i+j-1] && b[j-1]==c[i+j-1]){
+                    IL[i][j]=(IL[i-1][j] || IL[i][j-1])
+                }
+            }
+        }
+        return IL[M][N];
+    }
+
     var A = "AB";
     var B = "CD";
     var C = "ACBG";
 
-    if (isInterleaved(A, B, C) == true)
-        console.log("yes");
+    if(isInterleaved(A, B, C)){
+        //This solution is basically used when there are no character repetition
+        console.log("Yes");
+    } else {
+        console.log("No");
+    }
+
+    if (isInterleavedByDP("XY" ,"WZ" ,"WZXY"))
+    //This solution is basically used when there are character repetitions
+        console.log("Yes");
     else
-        console.log("false");
+        console.log("No");
 })();
